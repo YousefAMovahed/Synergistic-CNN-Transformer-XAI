@@ -37,15 +37,16 @@ The framework consists of three main phases:
 
 The proposed architecture was evaluated against state-of-the-art (SOTA) benchmarks including ResNet, EfficientNet, Swin Transformer, VGG, and YOLOv8. The table below compares the **Balanced Accuracy** and **Macro F1-Score** of our method against the strongest performing competitor for each dataset.
 
-| Dataset | Best Competitor (Model) | Best Competitor (Bal. Acc / F1) | Baseline (Ours) (Bal. Acc / F1) | **Proposed (Hybrid + XAI)** (Bal. Acc / F1) |
-| :--- | :---: | :---: | :---: | :---: |
-| **Alzheimer's Dataset 1** | EfficientNet-v2-s (Pretrained) | 86.83% / 74.61% | 91.30% / 79.90% | **92.48% / 85.95%** |
-| **Alzheimer's Dataset 2** | ResNet-18 (Scratch) | 95.42% / 93.93% | 95.51% / 93.47% | **95.92% / 94.02%** |
-| **RetinaMNIST** | ResNet-50 (Scratch) | 34.22% / 30.58% | 34.49% / 30.99% | **35.86% / 33.35%** |
-| **PneumoniaMNIST** | ResNet-18 (Pretrained) | **91.58%** / **91.19%** | 88.16% / 89.24% | 88.29% / 89.40% |
-| **DermaMNIST** | YOLOv8s-cls (Pretrained) | **50.78%** / 44.44% | 44.30% / 47.72% | 45.41% / **48.45%** |
+| Dataset                   |     Best Competitor (Model)    | Best Competitor (Bal. Acc / F1) | Baseline (Ours) (Bal. Acc / F1) | **Proposed (Hybrid + XAI)** (Bal. Acc / F1) |
+| :------------------------ | :----------------------------: | :-----------------------------: | :-----------------------------: | :-----------------------------------------: |
+| **Alzheimer's Dataset 1** | EfficientNet-v2-s (Pretrained) |         86.83% / 74.61%         |         91.30% / 79.90%         |             **92.48% / 85.95%**             |
+| **Alzheimer's Dataset 2** |       ResNet-18 (Scratch)      |         95.42% / 93.93%         |         95.51% / 93.47%         |             **95.92% / 94.02%**             |
+| **RetinaMNIST**           |       ResNet-50 (Scratch)      |         34.22% / 30.58%         |         34.49% / 30.99%         |             **35.86% / 33.35%**             |
+| **PneumoniaMNIST**        |     ResNet-18 (Pretrained)     |     **91.58%** / **91.19%**     |         88.16% / 89.24%         |               88.29% / 89.40%               |
+| **DermaMNIST**            |    YOLOv8s-cls (Pretrained)    |       **50.78%** / 44.44%       |         44.30% / 47.72%         |             45.41% / **48.45%**             |
 
 > **Key Observations:**
+>
 > * **Significant Improvement:** On complex, multi-class tasks like *Alzheimer's Dataset 1*, our proposed method improves Balanced Accuracy by **+5.65%** and F1-Score by **+11.34%** compared to the best competitor (EfficientNet-v2-s).
 > * **Robustness:** Even in cases where competitors like YOLOv8 achieve higher raw accuracy (e.g., DermaMNIST), our XAI-guided model achieves a superior **Macro F1-Score (+4.01%)**, indicating better handling of minority classes in imbalanced data.
 
@@ -56,7 +57,7 @@ The proposed architecture was evaluated against state-of-the-art (SOTA) benchmar
 1. **Clone the repository:**
 
 ```bash
-git clone [https://github.com/YourUsername/Synergistic-CNN-Transformer-XAI.git](https://github.com/YourUsername/Synergistic-CNN-Transformer-XAI.git)
+git clone https://github.com/YourUsername/Synergistic-CNN-Transformer-XAI.git
 cd Synergistic-CNN-Transformer-XAI
 ```
 
@@ -99,26 +100,31 @@ learning_rate: 5e-5
 alpha: 0.5  # Weight for Focal Loss vs Contrastive Loss
 ```
 
-### 3. Training & Inference
+### 3. Execution Stages
 
-To run the full pipeline (Training -> Mask Generation -> Intelligent Inference):
+**Step 1: Train the Hybrid Model (Phase 1)**
+Train the ConvNeXt-Swin backbone with the composite loss function.
 
 ```bash
-python main.py
+python train.py
 ```
 
-Or run specific phases programmatically:
+*This will save the best weights to `best_hybrid_model.pth`.*
 
-```python
-# Example logic in main.py
-from train import train_phase1
-from inference import run_intelligent_inference
+**Step 2: Hyperparameter Optimization (Optional)**
+If the default mask thresholds do not work well, use Optuna to find the best values.
 
-# Phase 1
-model = train_phase1(config)
+```bash
+python optimize.py
+```
 
-# Phase 2 & 3 (Auto-tunes thresholds with Optuna if needed)
-run_intelligent_inference(model, test_loader, config)
+*Update `configs/config.yaml` with the best parameters found.*
+
+**Step 3: Intelligent Inference (Phase 2 & 3)**
+Generate consensus masks and run the final evaluation with XAI-guided correction.
+
+```bash
+python inference.py
 ```
 
 ---
@@ -154,3 +160,4 @@ If you find this code useful for your research, please cite our paper:
 * **Libraries used:** `timm`, `pytorch-grad-cam`, `optuna`.
 
 <!-- end list -->
+
