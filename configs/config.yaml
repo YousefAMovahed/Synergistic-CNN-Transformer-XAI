@@ -1,0 +1,36 @@
+# Project Configuration
+project_name: "Alzheimer-Hybrid-XAI"
+seed: 42
+device: "cuda"
+
+# Data Settings
+data:
+  data_dir: "./data"
+  img_size: 224             # Input resolution
+  batch_size: 16
+  num_workers: 2
+
+# Model Hyperparameters
+model:
+  cnn_backbone: "convnext_small"                 # Local features
+  swin_backbone: "swin_small_patch4_window7_224" # Global features
+  embed_dim: 384
+  num_heads: 12
+  ff_dim: 384
+  dropout: 0.1
+
+# Training Settings
+train:
+  epochs: 5                 # Warm start + fine-tuning
+  lr: 0.00005               # 5e-5 conservative LR
+  label_smoothing: 0.1
+  loss_alpha: 0.5           # Balance: Focal vs Contrastive
+  scl_temperature: 0.07
+
+# Phase 2 & 3: Intelligent Inference (XAI)
+inference:
+  activation_percentile: 95
+  consensus_threshold: 0.90
+  confidence_threshold: 0.70
+  dilation_size: 3
+  optuna_trials: 50
