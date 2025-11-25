@@ -35,17 +35,19 @@ The framework consists of three main phases:
 
 ## 📊 Results
 
-The proposed architecture demonstrates superior performance across multiple datasets compared to state-of-the-art (SOTA) models.
+The proposed architecture was evaluated against state-of-the-art (SOTA) benchmarks including ResNet, EfficientNet, Swin Transformer, VGG, and YOLOv8. The table below compares the **Balanced Accuracy** and **Macro F1-Score** of our method against the strongest performing competitor for each dataset.
 
-| Dataset | Best Competing Model (SOTA) | Baseline (Hybrid Only) | **Proposed (Hybrid + XAI)** | Improvement over SOTA |
+| Dataset | Best Competitor (Model) | Best Competitor (Bal. Acc / F1) | Baseline (Ours) (Bal. Acc / F1) | **Proposed (Hybrid + XAI)** (Bal. Acc / F1) |
 | :--- | :---: | :---: | :---: | :---: |
-| **Alzheimer's Dataset 1** | 97.50% (Acc) / 90.15% (F1) <br> *(EfficientNet-B0)* | 99.11% (Acc) / 91.30% (F1) | **99.55% (Acc) / 92.48% (F1)** | **+2.33% (F1)** |
-| **Alzheimer's Dataset 2** | 99.20% (Acc) / 94.80% (F1) <br> *(ResNet-50)* | 99.88% (Acc) / 95.51% (F1) | **99.94% (Acc) / 95.92% (F1)** | **+1.12% (F1)** |
-| **RetinaMNIST** | 50.80% (Acc) / 33.20% (F1) <br> *(ResNet-50)* | 52.80% (Acc) / 34.49% (F1) | **54.30% (Acc) / 35.86% (F1)** | **+2.66% (F1)** |
-| **PneumoniaMNIST** | 94.60% (Acc) / 86.80% (F1) <br> *(EfficientNet-B0)* | 95.70% (Acc) / 88.16% (F1) | **96.10% (Acc) / 88.29% (F1)** | **+1.49% (F1)** |
-| **DermaMNIST** | 73.10% (Acc) / 42.50% (F1) <br> *(Swin-T)* | 75.30% (Acc) / 44.30% (F1) | **76.50% (Acc) / 45.41% (F1)** | **+2.91% (F1)** |
+| **Alzheimer's Dataset 1** | EfficientNet-v2-s (Pretrained) | 86.83% / 74.61% | 91.30% / 79.90% | **92.48% / 85.95%** |
+| **Alzheimer's Dataset 2** | ResNet-18 (Scratch) | 95.42% / 93.93% | 95.51% / 93.47% | **95.92% / 94.02%** |
+| **RetinaMNIST** | ResNet-50 (Scratch) | 34.22% / 30.58% | 34.49% / 30.99% | **35.86% / 33.35%** |
+| **PneumoniaMNIST** | ResNet-18 (Pretrained) | **91.58%** / **91.19%** | 88.16% / 89.24% | 88.29% / 89.40% |
+| **DermaMNIST** | YOLOv8s-cls (Pretrained) | **50.78%** / 44.44% | 44.30% / 47.72% | 45.41% / **48.45%** |
 
-> *Note: The 'Best Competing Model' column refers to the highest-performing standard backbone (e.g., ResNet, EfficientNet, Swin) tested in our experiments. Metric shown as **Accuracy / Macro F1-Score**. Our XAI-guided correction consistently achieves the highest F1-scores, particularly in handling class imbalance.*
+> **Key Observations:**
+> * **Significant Improvement:** On complex, multi-class tasks like *Alzheimer's Dataset 1*, our proposed method improves Balanced Accuracy by **+5.65%** and F1-Score by **+11.34%** compared to the best competitor (EfficientNet-v2-s).
+> * **Robustness:** Even in cases where competitors like YOLOv8 achieve higher raw accuracy (e.g., DermaMNIST), our XAI-guided model achieves a superior **Macro F1-Score (+4.01%)**, indicating better handling of minority classes in imbalanced data.
 
 ---
 
