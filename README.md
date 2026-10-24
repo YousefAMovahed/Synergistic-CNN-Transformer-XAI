@@ -3,7 +3,7 @@
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.12%2B-ee4c2c.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Official implementation of the manuscript *"SecondLook: Grad-CAM Consensus Review of Uncertain Predictions in a ConvNeXt–Swin Hybrid for Imbalanced Medical Image Classification"* (Y. Azizimovahed, A. Jalili, H. Sajedi; University of Tehran).
+Official implementation of the manuscript *"SecondLook: Grad-CAM Consensus Review of Uncertain Predictions in a ConvNeXt–Swin Hybrid for Imbalanced Medical Image Classification"* (Y. Azizi Movahed, A. Jalili, H. Sajedi; University of Tehran).
 
 The code implements a **two-phase pipeline**:
 
@@ -76,9 +76,9 @@ inference:
 ## Citation
 
 ```bibtex
-@unpublished{Azizimovahed2026SecondLook,
+@unpublished{AziziMovahed2026SecondLook,
   title  = {SecondLook: Grad-CAM Consensus Review of Uncertain Predictions in a ConvNeXt--Swin Hybrid for Imbalanced Medical Image Classification},
-  author = {Azizimovahed, Yousef and Jalili, Amirreza and Sajedi, Hedieh},
+  author = {Azizi Movahed, Yousef and Jalili, Amirreza and Sajedi, Hedieh},
   note   = {Manuscript, Department of Computer Science, University of Tehran},
   year   = {2026}
 }
