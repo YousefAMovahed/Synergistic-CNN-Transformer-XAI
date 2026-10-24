@@ -1,4 +1,5 @@
 import numpy as np
+from math import comb
 from sklearn.metrics import accuracy_score, balanced_accuracy_score, f1_score, confusion_matrix
 
 class MetricTracker:
@@ -37,3 +38,16 @@ class MetricTracker:
 
     def get_confusion_matrix(self):
         return confusion_matrix(self.y_true, self.y_pred)
+
+
+def mcnemar_exact(b, c):
+    """
+    Exact two-sided McNemar test on the discordant pairs:
+    b = Phase 1 errors corrected by the review layer, c = correct predictions harmed.
+    """
+    n = b + c
+    if n == 0:
+        return 1.0
+    k = min(b, c)
+    p = 2 * sum(comb(n, i) for i in range(k + 1)) / 2 ** n
+    return min(1.0, p)

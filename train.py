@@ -56,9 +56,18 @@ def validate(model, loader, device):
             total += labels.size(0)
     return correct / total
 
+def set_seed(seed):
+    """Fix random seeds for reproducibility (seeds 42, 123 and 2026 were used in the paper)."""
+    import random
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+
 def main():
     # 1. Load Config
     cfg = load_config()
+    set_seed(cfg['seed'])
     device = cfg['device'] if torch.cuda.is_available() else "cpu"
     print(f"🚀 Starting Phase 1 Training on {device}...")
 
@@ -76,7 +85,10 @@ def main():
     # Split Train/Val (80/20)
     train_size = int(0.8 * len(full_dataset))
     val_size = len(full_dataset) - train_size
-    train_dataset, val_dataset = random_split(full_dataset, [train_size, val_size])
+    train_dataset, val_dataset = random_split(
+        full_dataset, [train_size, val_size],
+        generator=torch.Generator().manual_seed(cfg['seed'])
+    )
     
     train_loader = DataLoader(train_dataset, batch_size=cfg['data']['batch_size'], shuffle=True, num_workers=cfg['data']['num_workers'])
     val_loader = DataLoader(val_dataset, batch_size=cfg['data']['batch_size'], shuffle=False, num_workers=cfg['data']['num_workers'])
@@ -113,7 +125,7 @@ def main():
         
         print(f"📉 Train Loss: {avg_loss:.4f} | 📈 Val Acc: {val_acc:.4f}")
         
-        # Save Best Model
+        # Save the epoch with the highest validation accuracy (Phase 1 checkpoint rule in the paper)
         if val_acc > best_acc:
             best_acc = val_acc
             torch.save(model.state_dict(), "best_hybrid_model.pth")

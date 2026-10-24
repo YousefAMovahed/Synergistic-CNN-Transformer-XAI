@@ -29,20 +29,22 @@ def objective(trial, model, loader, device, classes):
         'consensus_threshold': trial.suggest_float('consensus_threshold', 0.4, 0.95, step=0.05),
         'activation_percentile': trial.suggest_int('activation_percentile', 85, 99),
         'confidence_threshold': trial.suggest_float('confidence_threshold', 0.5, 0.95, step=0.05),
-        'dilation_size': 3 # Fixed for now
+        'dilation_size': 3, # Fixed for now
+        'use_error_threshold': True,       # tau = min(tau_conf, tau_err), as in the paper
+        'require_valid_pred_mask': False,  # rule as run in the reported experiments
     }
 
     # 2. Phase 2: Generate Masks with trial params
     # We pass verbose=False to keep the output clean during optimization
-    consensus_masks, cam = create_consensus_masks(model, loader, device, cfg_trial, verbose=False)
+    consensus_masks, cam, tau_err = create_consensus_masks(model, loader, device, cfg_trial, verbose=False)
 
     # Pruning: If params are too strict and no masks are generated, return 0 score
     if not consensus_masks:
         return 0.0
 
-    # 3. Phase 3: Run Inference (using validation set as proxy for tuning)
+    # 3. Run the review on the validation set (the test set is never used for tuning)
     y_true, y_pred, _ = run_intelligent_inference(
-        model, loader, consensus_masks, cam, device, cfg_trial, classes
+        model, loader, consensus_masks, cam, device, cfg_trial, classes, tau_err=tau_err
     )
 
     # 4. Calculate Score (Balanced Accuracy)

@@ -1,5 +1,5 @@
 # Project Configuration
-project_name: "Alzheimer-Hybrid-XAI"
+project_name: "SecondLook"
 seed: 42
 device: "cuda"
 
@@ -21,16 +21,19 @@ model:
 
 # Training Settings
 train:
-  epochs: 5                 # Warm start + fine-tuning
+  epochs: 5                 # short-budget protocol (all parameters trained jointly)
   lr: 0.00005               # 5e-5 conservative LR
   label_smoothing: 0.1
   loss_alpha: 0.5           # Balance: Focal vs Contrastive
   scl_temperature: 0.07
 
-# Phase 2 & 3: Intelligent Inference (XAI)
+# Phase 2: SecondLook review layer (defaults; tune with optimize.py on the validation split)
 inference:
   activation_percentile: 95
   consensus_threshold: 0.90
   confidence_threshold: 0.70
   dilation_size: 3
   optuna_trials: 50
+  use_error_threshold: true        # tau = min(confidence_threshold, tau_err)
+  require_valid_pred_mask: false   # true = also require y1 to have a valid mask (stricter variant, not used in the paper)
+  audit_path: "results/secondlook_audit.csv"
