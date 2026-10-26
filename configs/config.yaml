@@ -21,7 +21,9 @@ model:
 
 # Training Settings
 train:
-  epochs: 5                 # short-budget protocol (all parameters trained jointly)
+  epochs: 5                 # short-budget protocol
+  freeze_backbones: true    # short budget: pretrained backbones frozen, only projections, fusion and heads trained
+                            # (convergence protocol: false, up to 100 epochs with early stopping)
   lr: 0.00005               # 5e-5 conservative LR
   label_smoothing: 0.1
   loss_alpha: 0.5           # Balance: Focal vs Contrastive
@@ -33,7 +35,9 @@ inference:
   consensus_threshold: 0.90
   confidence_threshold: 0.70
   dilation_size: 3
-  optuna_trials: 50
+  min_mask_pixels: 100             # a consensus mask is valid with >= 5 images and >= 100 pixels
+  optuna_trials: 50                # used when the defaults give at most one valid mask
   use_error_threshold: true        # tau = min(confidence_threshold, tau_err)
-  require_valid_pred_mask: false   # true = also require y1 to have a valid mask (stricter variant, not used in the paper)
+  fixed_tau: null                  # if set, overrides tau (AD5 run in the paper: 0.6585)
+  require_valid_pred_mask: true    # review only predictions whose class has a valid mask (rule used in the paper)
   audit_path: "results/secondlook_audit.csv"

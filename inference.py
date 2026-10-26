@@ -54,13 +54,14 @@ def create_consensus_masks(model, loader, device, cfg_inf, verbose=True):
                 )
                 class_masks.setdefault(label_idx, []).append(mask)
 
-    # Aggregate masks: C_c = 1[F_c >= tau_cons], valid only if N_c >= 5 and area > 50 pixels
+    # Aggregate masks: C_c = 1[F_c >= tau_cons], valid only if N_c >= 5 and area >= 100 pixels.
+    # Classes are visited in index order, which fixes the tie-breaking of the argmax below.
     final_consensus = {}
-    for cls, masks in class_masks.items():
+    for cls, masks in sorted(class_masks.items()):
         if len(masks) < 5: continue
         freq_map = np.mean(np.stack(masks), axis=0)
         final_mask = (freq_map >= cfg_inf['consensus_threshold']).astype(np.uint8)
-        if np.sum(final_mask) > 50:
+        if np.sum(final_mask) >= cfg_inf.get('min_mask_pixels', 100):
             final_consensus[cls] = final_mask
 
     tau_err = float(np.mean(wrong_conf)) if wrong_conf else 1.0
@@ -73,7 +74,10 @@ def create_consensus_masks(model, loader, device, cfg_inf, verbose=True):
     return final_consensus, cam, tau_err
 
 def operating_threshold(cfg_inf, tau_err):
-    """tau = min(tau_conf, tau_err) as in the paper; tau_conf alone if use_error_threshold is False."""
+    """tau = fixed_tau if given (AD5 run: 0.6585); otherwise min(tau_conf, tau_err), or tau_conf alone
+    if use_error_threshold is False."""
+    if cfg_inf.get('fixed_tau') is not None:
+        return float(cfg_inf['fixed_tau'])
     tau_conf = cfg_inf['confidence_threshold']
     return min(tau_conf, tau_err) if cfg_inf.get('use_error_threshold', True) else tau_conf
 
@@ -82,15 +86,15 @@ def run_intelligent_inference(model, loader, consensus_masks, cam, device, cfg_i
     """
     Phase 2 (Step 3): SecondLook review with the dual-confirmation rule.
 
-    A prediction is reviewed if p1 < tau. The Grad-CAM mask of the predicted class y1 is
-    compared with every valid consensus mask by the unnormalised pixel intersection
-    S(x, c) = sum(M_x * C_c); y_mask = argmax_c S(x, c). The label is switched to y2 only
-    if y_mask == y2. The reported experiments did NOT require y1 to have a valid mask;
-    set require_valid_pred_mask: true to enable that stricter variant.
+    A prediction is reviewed if p1 < tau and its class y1 has a valid consensus mask (the rule
+    of the archived experiments; set require_valid_pred_mask: false for the variant without the
+    second condition). The Grad-CAM mask of y1 is compared with every valid consensus mask by the
+    unnormalised pixel intersection S(x, c) = sum(M_x * C_c); y_mask = argmax_c S(x, c). The label
+    is switched to y2 only if y_mask == y2.
     """
     model.eval()
     tau = operating_threshold(cfg_inf, tau_err)
-    require_valid = cfg_inf.get('require_valid_pred_mask', False)
+    require_valid = cfg_inf.get('require_valid_pred_mask', True)
     all_preds, all_labels, audit_rows = [], [], []
     sample_idx = 0
 

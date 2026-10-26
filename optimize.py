@@ -31,7 +31,8 @@ def objective(trial, model, loader, device, classes):
         'confidence_threshold': trial.suggest_float('confidence_threshold', 0.5, 0.95, step=0.05),
         'dilation_size': 3, # Fixed for now
         'use_error_threshold': True,       # tau = min(tau_conf, tau_err), as in the paper
-        'require_valid_pred_mask': False,  # rule as run in the reported experiments
+        'require_valid_pred_mask': True,   # rule of the archived experiments
+        'min_mask_pixels': 100,
     }
 
     # 2. Phase 2: Generate Masks with trial params

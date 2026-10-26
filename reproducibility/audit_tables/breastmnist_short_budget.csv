@@ -1,0 +1,52 @@
+row,pred_1,p1,pred_2,p2,mask_class,true,logged_outcome
+0,malignant,0.5349,"normal, benign",0.4651,malignant,"normal, benign",unchanged
+1,"normal, benign",0.5458,malignant,0.4542,"normal, benign",malignant,unchanged
+2,"normal, benign",0.5098,malignant,0.4902,"normal, benign","normal, benign",unchanged
+3,malignant,0.5169,"normal, benign",0.4831,malignant,malignant,unchanged
+4,malignant,0.5441,"normal, benign",0.4559,malignant,malignant,unchanged
+5,"normal, benign",0.585,malignant,0.415,"normal, benign","normal, benign",unchanged
+6,malignant,0.5283,"normal, benign",0.4717,malignant,"normal, benign",unchanged
+7,malignant,0.5254,"normal, benign",0.4746,malignant,malignant,unchanged
+8,"normal, benign",0.5261,malignant,0.4739,malignant,"normal, benign",harmed
+9,malignant,0.5054,"normal, benign",0.4946,malignant,malignant,unchanged
+10,"normal, benign",0.5795,malignant,0.4205,"normal, benign","normal, benign",unchanged
+11,"normal, benign",0.5511,malignant,0.4489,malignant,"normal, benign",harmed
+12,"normal, benign",0.5326,malignant,0.4674,malignant,"normal, benign",harmed
+13,"normal, benign",0.5594,malignant,0.4406,malignant,"normal, benign",harmed
+14,malignant,0.5149,"normal, benign",0.4851,malignant,malignant,unchanged
+15,"normal, benign",0.5726,malignant,0.4274,malignant,malignant,corrected
+16,malignant,0.5019,"normal, benign",0.4981,malignant,"normal, benign",unchanged
+17,"normal, benign",0.5495,malignant,0.4505,"normal, benign","normal, benign",unchanged
+18,"normal, benign",0.5631,malignant,0.4369,malignant,"normal, benign",harmed
+19,"normal, benign",0.5442,malignant,0.4558,"normal, benign","normal, benign",unchanged
+20,malignant,0.527,"normal, benign",0.473,malignant,"normal, benign",unchanged
+21,malignant,0.5315,"normal, benign",0.4685,malignant,"normal, benign",unchanged
+22,malignant,0.5099,"normal, benign",0.4901,malignant,"normal, benign",unchanged
+23,malignant,0.5746,"normal, benign",0.4254,malignant,"normal, benign",unchanged
+24,"normal, benign",0.5003,malignant,0.4997,malignant,malignant,corrected
+25,"normal, benign",0.5217,malignant,0.4783,malignant,"normal, benign",harmed
+26,"normal, benign",0.5006,malignant,0.4994,"normal, benign","normal, benign",unchanged
+27,"normal, benign",0.5315,malignant,0.4685,malignant,"normal, benign",harmed
+28,"normal, benign",0.5476,malignant,0.4524,"normal, benign","normal, benign",unchanged
+29,malignant,0.5241,"normal, benign",0.4759,malignant,"normal, benign",unchanged
+30,"normal, benign",0.5323,malignant,0.4677,malignant,"normal, benign",harmed
+31,malignant,0.561,"normal, benign",0.439,malignant,"normal, benign",unchanged
+32,"normal, benign",0.5844,malignant,0.4156,"normal, benign","normal, benign",unchanged
+33,"normal, benign",0.5641,malignant,0.4359,malignant,"normal, benign",harmed
+34,"normal, benign",0.547,malignant,0.453,"normal, benign",malignant,unchanged
+35,"normal, benign",0.5007,malignant,0.4993,malignant,malignant,corrected
+36,malignant,0.5292,"normal, benign",0.4708,malignant,"normal, benign",unchanged
+37,malignant,0.5475,"normal, benign",0.4525,malignant,malignant,unchanged
+38,"normal, benign",0.5776,malignant,0.4224,"normal, benign","normal, benign",unchanged
+39,malignant,0.581,"normal, benign",0.419,"normal, benign",malignant,harmed
+40,malignant,0.5365,"normal, benign",0.4635,malignant,malignant,unchanged
+41,"normal, benign",0.5343,malignant,0.4657,"normal, benign","normal, benign",unchanged
+42,"normal, benign",0.5112,malignant,0.4888,"normal, benign","normal, benign",unchanged
+43,"normal, benign",0.5307,malignant,0.4693,malignant,malignant,corrected
+44,"normal, benign",0.5829,malignant,0.4171,malignant,malignant,corrected
+45,malignant,0.5569,"normal, benign",0.4431,malignant,malignant,unchanged
+46,malignant,0.516,"normal, benign",0.484,malignant,"normal, benign",unchanged
+47,malignant,0.5208,"normal, benign",0.4792,malignant,malignant,unchanged
+48,"normal, benign",0.5386,malignant,0.4614,malignant,"normal, benign",harmed
+49,"normal, benign",0.5182,malignant,0.4818,"normal, benign",malignant,unchanged
+50,"normal, benign",0.5621,malignant,0.4379,malignant,"normal, benign",harmed

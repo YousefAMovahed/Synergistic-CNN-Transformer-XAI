@@ -1,0 +1,18 @@
+{
+ "123": {
+  "reviewed": 34,
+  "changes": {
+   "None > Mild > corrected": 1
+  }
+ },
+ "2026": {
+  "reviewed": 53,
+  "changes": {
+   "Very Mild > Severe > corrected": 13
+  }
+ },
+ "42": {
+  "reviewed": 14,
+  "changes": {}
+ }
+}

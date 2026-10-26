@@ -1,0 +1,42 @@
+{
+ "0": {
+  "reviewed": 186,
+  "changes": {
+   "Moderate > Severe > harmed": 41
+  },
+  "reviewed_by": "Severe>Very Mild mask Severe true Severe: 125 | Moderate>Severe mask Severe true Moderate: 41 | Severe>Moderate mask Severe true Moderate: 8 | Moderate>Severe mask Moderate true Moderate: 7 | Moderate>Mild mask Severe true Moderate: 4 | Severe>Moderate mask Severe true Severe: 1"
+ },
+ "1": {
+  "reviewed": 214,
+  "changes": {
+   "Very Mild > Severe > corrected": 79,
+   "Very Mild > Severe > harmed": 2
+  },
+  "reviewed_by": "Severe>Very Mild mask Severe true Severe: 118 | Very Mild>Severe mask Severe true Severe: 79 | Severe>Moderate mask Severe true Moderate: 9 | Severe>Moderate mask Severe true Severe: 2 | Very Mild>Severe mask Severe true Very Mild: 2 | Very Mild>Mild mask Severe true Severe: 1 | Very Mild>Mild mask Severe true Very Mild: 1 | Severe>Very Mild mask Severe true Very Mild: 1 | Very Mild>None mask Severe true Very Mild: 1"
+ },
+ "123": {
+  "reviewed": 208,
+  "changes": {
+   "Moderate > Severe > harmed": 25,
+   "Very Mild > Severe > corrected": 67,
+   "Very Mild > Severe > harmed": 1
+  },
+  "reviewed_by": "Severe>Very Mild mask Severe true Severe: 97 | Very Mild>Severe mask Severe true Severe: 67 | Moderate>Severe mask Severe true Moderate: 25 | Severe>Moderate mask Severe true Moderate: 6 | Moderate>Severe mask Moderate true Moderate: 6 | Moderate>Mild mask Severe true Moderate: 1 | Severe>Moderate mask Severe true Severe: 1 | Very Mild>Severe mask Moderate true Severe: 1 | Very Mild>None mask Severe true Severe: 1 | Very Mild>Severe mask Severe true Very Mild: 1 | Severe>Very Mild mask Severe true Very Mild: 1 | Very Mild>None mask Severe true Very Mild: 1"
+ },
+ "2026": {
+  "reviewed": 157,
+  "changes": {
+   "Very Mild > Severe > corrected": 50,
+   "Very Mild > Severe > harmed": 2
+  },
+  "reviewed_by": "Severe>Very Mild mask Severe true Severe: 91 | Very Mild>Severe mask Severe true Severe: 50 | Severe>Moderate mask Severe true Moderate: 10 | Severe>Very Mild mask Severe true Very Mild: 2 | Very Mild>Severe mask Severe true Very Mild: 2 | Severe>Moderate mask Severe true Severe: 1 | Very Mild>None mask Severe true Severe: 1"
+ },
+ "42": {
+  "reviewed": 170,
+  "changes": {
+   "Very Mild > Severe > corrected": 58,
+   "Very Mild > Severe > harmed": 2
+  },
+  "reviewed_by": "Severe>Very Mild mask Severe true Severe: 100 | Very Mild>Severe mask Severe true Severe: 58 | Severe>Moderate mask Severe true Moderate: 10 | Very Mild>Severe mask Severe true Very Mild: 2"
+ }
+}

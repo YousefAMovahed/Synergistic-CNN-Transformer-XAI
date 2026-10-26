@@ -1,0 +1,5 @@
+row,pred_1,p1,pred_2,p2,mask_class,true,logged_outcome
+0,normal,0.5036,pneumonia,0.4964,pneumonia,normal,harmed
+1,normal,0.5059,pneumonia,0.4941,normal,normal,unchanged
+2,pneumonia,0.5059,normal,0.4941,normal,normal,corrected
+3,normal,0.5026,pneumonia,0.4974,pneumonia,pneumonia,corrected
