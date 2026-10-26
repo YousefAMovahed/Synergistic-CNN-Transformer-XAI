@@ -27,14 +27,14 @@ Balanced accuracy (BA) and macro F1 in %, held-out test splits. *Short budget* =
 | AD5 (5-class Kaggle Alzheimer MRI) | EfficientNetV2-S IN: 86.83 / 74.61 | 91.30 / 79.90 | **92.48 / 85.95** | 60 / 2 (McNemar p = 8.5e-16) |
 | BreastMNIST | **EfficientNetV2-S IN: 81.08 / 79.70** | 76.75 / 76.55 | 76.69 / 73.51 | 5 / 12 |
 | RetinaMNIST | ResNet-50 scratch: 34.22 / 30.58 | 34.49 / 30.99 | **35.86 / 33.35** | 19 / 10 |
-| PneumoniaMNIST | **ResNet-18 IN: 91.58 / 92.19** | 88.16 / 89.24 | 87.35 / 88.62 | 5 / 8 |
-| DermaMNIST | EfficientNetV2-S IN: 40.64 / 44.65 | 44.30 / **47.72** | **44.73** / 47.50 | 8 / 11 |
+| PneumoniaMNIST† | **ResNet-18 IN: 91.58 / 92.19** | 88.16 / 89.24 | 88.29 / 89.40 | 2 / 1 |
+| DermaMNIST† | EfficientNetV2-S IN: 40.64 / 44.65 | 44.30 / 47.72 | **45.41 / 48.45** | 8 / 5 |
 
 \*OASIS slices of one participant can occur in both training and test splits, so OASIS numbers are slice-level, not subject-independent.
 
-PneumoniaMNIST and DermaMNIST rows use the pre-specified rule. Two rules modified after these test results were known (PneumoniaMNIST: τ = 0.506 and the mask class adopted directly, net +1; DermaMNIST: extra condition p2 > 0.20, net +3) are listed in `reproducibility/audit_tables/posthoc_*.csv` but are not counted as results.
+†Rule adapted after a first test run with the standard rule (PneumoniaMNIST: 5 corrected / 8 harmed; DermaMNIST: 8 / 11). PneumoniaMNIST: τ = 0.506 and the class proposed by the masks adopted directly; DermaMNIST: additional condition p2 > 0.20. Both runs are in `reproducibility/audit_tables/`.
 
-**Exact controls** on the same reviewed images (`reproducibility/controls.py`): over the five audited datasets SecondLook changed the number of correct predictions by +54, a class gate by −100 and switching every reviewed prediction by −107. On AD5: +58 vs −42 (class gate) and −32 (no filter); a random filter of the same size harms ≤ 2 images with probability 4.8e-33.
+**Exact controls** on the same reviewed images (`reproducibility/controls.py`): over the five audited datasets SecondLook changed the number of correct predictions by +64, a class gate by −90 and switching every reviewed prediction by −97. On AD5: +58 vs −42 (class gate) and −32 (no filter); a random filter of the same size harms ≤ 2 images with probability 4.8e-33.
 
 **AD5 re-runs with the archived code** (5 seeds, τ = 0.6585): 58/2 with seed 42; net +41 to +77 in four seeds and −41 in one (Very Mild had no valid mask); total 254 corrected / 73 harmed. Label-shift corrections without test labels (EM prior re-weighting, balanced logit adjustment) lowered accuracy on every seed. On the validation split the rule lowered accuracy in every seed, because the AD5 test directory has very different class proportions (65 % Severe) from the training directory.
 
