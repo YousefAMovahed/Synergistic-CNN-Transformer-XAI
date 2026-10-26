@@ -85,7 +85,10 @@ inference:
 
 * `reproducibility/audit_tables/` – per-image tables of every reviewed test image of the archived short-budget runs (predicted and second-ranked class with probabilities, class chosen by the masks, true label, logged outcome).
 * `reproducibility/controls.py` – recomputes the exact controls of the paper from these tables.
-* `reproducibility/kaggle/` – the Kaggle scripts of the AD5 re-runs (short budget, five seeds; convergence protocol, three seeds) and their result files.
+* `reproducibility/kaggle/` – the Kaggle scripts and result files of the AD5 re-runs (short budget, five seeds; convergence protocol, three seeds), of the additional checks (IoU/Dice/coverage scores, Grad-CAM from the Swin branch and the fusion block, directional rule, temperature scaling with a top-2 switch, validation-tuned class bias, duplicate exclusion; BreastMNIST re-runs) and of the Grad-CAM sanity check on AD5 (deletion/insertion against random pixel order, parameter randomization).
+* `reproducibility/directional_control.py` – SecondLook against a fixed rule that switches only toward the class with the largest consensus mask, on the audit tables.
+* `reproducibility/split_half_enablement.py` – the enablement rule evaluated with half of the AD5 test directory as validation data (exact enumeration).
+* `reproducibility/ad5_duplicate_check.py` – pixel-level comparison of the AD5 training and test directories (102 test images duplicate training images; indices in `ad5_test_duplicate_indices.json`).
 
 ## Citation
 
