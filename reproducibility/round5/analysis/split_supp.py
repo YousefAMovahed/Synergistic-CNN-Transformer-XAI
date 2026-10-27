@@ -27,7 +27,7 @@ supp = {}
 supp['methods'] = [cut_env('fig:baseline_arch', 'figure'), cut_env('tab:settings', 'table'), cut_env('fig:walkthrough', 'figure'),
                    cut_range('\\paragraph{Archived records}', '\\paragraph{Metrics and statistics}')]
 supp['classwise'] = [cut_range('\\paragraph{Class-wise behavior of Phase~1}', '\\subsection{Five seeds on identical AD5 splits}')]
-supp['robust'] = [cut_env('fig:sweep', 'figure'), cut_env('tab:rerun', 'table'), cut_env('tab:alternatives', 'table'),
+supp['robust'] = [cut_range('\\paragraph{Threshold}', '\\paragraph{Five seeds}', open('r7_threshold_summary.tex', encoding='utf8').read().strip() + '\n\n').replace('\\paragraph{Threshold}', '\\paragraph{Threshold sweep}', 1), cut_env('tab:rerun', 'table'), cut_env('tab:alternatives', 'table'),
                   cut_range('\\paragraph{Score and Grad-CAM source}', '\\paragraph{A reversed class prior}',
                             open('r5_robust_summary.tex', encoding='utf8').read().strip() + '\n\n'),
                   cut_range('\\paragraph{BreastMNIST re-runs}', '\\subsection{Participant-level OASIS-1')]

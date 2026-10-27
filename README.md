@@ -105,7 +105,7 @@ inference:
 
 ```bibtex
 @unpublished{AziziMovahed2026SecondLook,
-  title  = {SecondLook: Auditable Grad-CAM-Guided Review of Uncertain Predictions in a ConvNeXt--Swin Hybrid for Imbalanced Medical Image Classification},
+  title  = {SecondLook: Auditable Grad-CAM-Guided Review of Uncertain Predictions in a ConvNeXt--Swin Hybrid under Class Imbalance and Dataset Shift},
   author = {Azizi Movahed, Yousef and Jalili, Amirreza and Sajedi, Hedieh},
   note   = {Manuscript, Department of Computer Science, University of Tehran},
   year   = {2026}
