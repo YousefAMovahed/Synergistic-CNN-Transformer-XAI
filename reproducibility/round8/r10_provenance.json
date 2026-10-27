@@ -1,0 +1,107 @@
+{
+ "test_crosstab": {
+  "Mild->NonDemented": 11,
+  "Mild->MildDemented": 38,
+  "Moderate->VeryMildDemented": 153,
+  "None->NonDemented": 21,
+  "Servere->NonDemented": 131,
+  "Servere->MildDemented": 10,
+  "Servere->VeryMildDemented": 328,
+  "Very Mild->NonDemented": 18,
+  "Very Mild->VeryMildDemented": 11
+ },
+ "per_seed": {
+  "42": {
+   "severe_pred_vm": {
+    "NonDemented": 33,
+    "VeryMildDemented": 51
+   },
+   "corrected": {
+    "NonDemented": 22,
+    "VeryMildDemented": 36
+   },
+   "harmed": {
+    "VeryMildDemented": 2
+   },
+   "severe_pred_severe": {
+    "NonDemented": 98,
+    "MildDemented": 10,
+    "VeryMildDemented": 277
+   }
+  },
+  "123": {
+   "severe_pred_vm": {
+    "NonDemented": 41,
+    "VeryMildDemented": 67
+   },
+   "corrected": {
+    "NonDemented": 24,
+    "VeryMildDemented": 43
+   },
+   "harmed": {
+    "VeryMildDemented": 26
+   },
+   "severe_pred_severe": {
+    "NonDemented": 90,
+    "MildDemented": 10,
+    "VeryMildDemented": 261
+   }
+  },
+  "2026": {
+   "severe_pred_vm": {
+    "NonDemented": 28,
+    "VeryMildDemented": 36
+   },
+   "corrected": {
+    "NonDemented": 21,
+    "VeryMildDemented": 29
+   },
+   "harmed": {
+    "VeryMildDemented": 2
+   },
+   "severe_pred_severe": {
+    "NonDemented": 103,
+    "MildDemented": 10,
+    "VeryMildDemented": 292
+   }
+  },
+  "0": {
+   "severe_pred_vm": {
+    "NonDemented": 40,
+    "VeryMildDemented": 68
+   },
+   "corrected": {},
+   "harmed": {
+    "VeryMildDemented": 41
+   },
+   "severe_pred_severe": {
+    "NonDemented": 91,
+    "MildDemented": 10,
+    "VeryMildDemented": 260
+   }
+  },
+  "1": {
+   "severe_pred_vm": {
+    "NonDemented": 34,
+    "VeryMildDemented": 59
+   },
+   "corrected": {
+    "NonDemented": 26,
+    "VeryMildDemented": 53
+   },
+   "harmed": {
+    "VeryMildDemented": 1,
+    "NonDemented": 1
+   },
+   "severe_pred_severe": {
+    "NonDemented": 96,
+    "MildDemented": 10,
+    "VeryMildDemented": 269
+   }
+  }
+ },
+ "corrected_total": {
+  "NonDemented": 93,
+  "VeryMildDemented": 161
+ }
+}

@@ -1,0 +1,98 @@
+{
+ "sizes": {
+  "train": {
+   "176x208": 2232
+  },
+  "test": {
+   "176x208": 721
+  }
+ },
+ "test_vs_train": {
+  "exact": 102,
+  "near_0.99": 321,
+  "near_0.98": 415,
+  "near_0.95": 716,
+  "near_0.99_label_pairs": {
+   "Mild<-NonDemented": 9,
+   "Mild<-MildDemented": 2,
+   "Moderate<-ModerateDemented": 144,
+   "Moderate<-SevereDemented": 7,
+   "None<-MildDemented": 3,
+   "None<-NonDemented": 15,
+   "Servere<-SevereDemented": 69,
+   "Servere<-VeryMildDemented": 52,
+   "Very Mild<-NonDemented": 1,
+   "Very Mild<-VeryMildDemented": 19
+  },
+  "near_0.98_label_pairs": {
+   "Mild<-NonDemented": 9,
+   "Mild<-MildDemented": 5,
+   "Moderate<-ModerateDemented": 146,
+   "Moderate<-SevereDemented": 7,
+   "None<-MildDemented": 3,
+   "None<-NonDemented": 17,
+   "Servere<-SevereDemented": 128,
+   "Servere<-VeryMildDemented": 77,
+   "Very Mild<-NonDemented": 1,
+   "Very Mild<-VeryMildDemented": 22
+  }
+ },
+ "train_vs_train": {
+  "exact_dupe_images": 287,
+  "near_0.99": 2049,
+  "near_0.98": 2160,
+  "near_0.95": 2229,
+  "near_0.99_same_label": 1982
+ },
+ "sources": {
+  "datasets": {
+   "n": 6400,
+   "sizes": {
+    "176x208": 6400
+   },
+   "labels": {
+    "ModerateDemented": 64,
+    "NonDemented": 3200,
+    "VeryMildDemented": 2240,
+    "MildDemented": 896
+   },
+   "train": {
+    "exact": 2232,
+    "near_0.99": 2232,
+    "crosstab": {
+     "MildDemented->VeryMildDemented": 174,
+     "MildDemented->NonDemented": 134,
+     "MildDemented->MildDemented": 7,
+     "MildDemented->ModerateDemented": 8,
+     "ModerateDemented->MildDemented": 361,
+     "ModerateDemented->ModerateDemented": 19,
+     "ModerateDemented->NonDemented": 1,
+     "ModerateDemented->VeryMildDemented": 536,
+     "NonDemented->VeryMildDemented": 32,
+     "NonDemented->NonDemented": 209,
+     "NonDemented->MildDemented": 1,
+     "SevereDemented->MildDemented": 204,
+     "SevereDemented->ModerateDemented": 13,
+     "SevereDemented->VeryMildDemented": 374,
+     "VeryMildDemented->VeryMildDemented": 85,
+     "VeryMildDemented->NonDemented": 74
+    }
+   },
+   "test": {
+    "exact": 721,
+    "near_0.99": 721,
+    "crosstab": {
+     "Mild->NonDemented": 11,
+     "Mild->MildDemented": 38,
+     "Moderate->VeryMildDemented": 153,
+     "None->NonDemented": 21,
+     "Servere->NonDemented": 131,
+     "Servere->MildDemented": 10,
+     "Servere->VeryMildDemented": 328,
+     "Very Mild->NonDemented": 18,
+     "Very Mild->VeryMildDemented": 11
+    }
+   }
+  }
+ }
+}
