@@ -17,3 +17,4 @@ All analyses run on CPU from saved outputs; no model was retrained.
 Inputs: the saved probabilities and raw Grad-CAM maps of the five AD5 re-runs (`round3` outputs) and the audit tables
 in `reproducibility/audit_tables`.
 * `equal_area_direction_matched_null.py`: equal-area templates against a random choice restricted to the same direction (Very Mild predictions with Severe as runner-up), and the number of distinct corrected test images.
+* `ad5_annotation_figure_job.py` (Kaggle, CPU): figure of corrected AD5 test images with their labels in the source collection (`ad5_annotation_shift.png`).
