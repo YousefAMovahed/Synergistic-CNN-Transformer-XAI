@@ -13,7 +13,7 @@ The code implements a **two-phase pipeline**:
    * *Review rule:* a test prediction is reviewed if its top-1 probability `p1 < τ` **and its predicted class has a valid consensus mask**. The Grad-CAM mask of the predicted class is compared with every valid consensus mask by the **unnormalised pixel intersection** `S(x,c) = Σ M_x · C_c`. The label is switched to the second-ranked class **only if** that class also has the largest intersection (dual confirmation). Logits and attention are never modified.
    * *Thresholds:* masks are first built with the defaults (`activation_percentile` 95, `consensus_threshold` 0.90). If this gives at most one valid mask, Optuna (50 trials) tunes the three thresholds on the **validation** split and `τ = min(confidence_threshold, τ_err)`, where `τ_err` is the mean confidence of misclassified validation images. In the AD5 run the defaults gave two valid masks and `τ` was fixed at 0.6585 (`fixed_tau`).
 
-> **Release v1.3-secondlook** corresponds to the final version of the manuscript (main text and Supplementary Material). It adds the reproducibility material of all additional experiments under `reproducibility/` and keeps the review rule of v1.1.
+> **Release v1.4-secondlook** corresponds to the final version of the manuscript (main text and Supplementary Material). It adds the reproducibility material of all additional experiments under `reproducibility/` and keeps the review rule of v1.1.
 
 > **Correction (release v1.1-secondlook).** Release v1.0-secondlook triggered review on `p1 < τ` alone and used a 50-pixel mask threshold. The archived notebook that produced the reported results also requires the predicted class to have a valid mask and uses 100 pixels; this rule is now the default (`require_valid_pred_mask: true`, `min_mask_pixels: 100`).
 
@@ -105,7 +105,7 @@ inference:
 
 * `reproducibility/round7/` – comparison with the confidence- and entropy-based correction CEbUTAl (Jeffrey et al., 2025) on the five AD5 runs, per-seed results for both thresholds, and the locality analysis of SecondLook against a tuned class bias (`analysis_r9.py`, `r9_analysis.json`).
 
-* `reproducibility/round8/` – provenance check of AD5 against public Alzheimer MRI collections, ordinal metrics, equal-area templates against a random filter, the learned pair rule and label budgets, and the standard-rule results of PneumoniaMNIST and DermaMNIST (release `v1.3-secondlook`).
+* `reproducibility/round8/` – provenance check of AD5 against public Alzheimer MRI collections, ordinal metrics, equal-area templates against a random filter, the learned pair rule and label budgets, and the standard-rule results of PneumoniaMNIST and DermaMNIST (release `v1.4-secondlook`).
 
 ## Citation
 

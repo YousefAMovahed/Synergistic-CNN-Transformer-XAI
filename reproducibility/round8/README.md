@@ -1,4 +1,4 @@
-# Round 8 analyses (manuscript release v1.3-secondlook)
+# Round 8 analyses (manuscript releases v1.3/v1.4-secondlook)
 
 All analyses run on CPU from saved outputs; no model was retrained.
 
@@ -16,3 +16,4 @@ All analyses run on CPU from saved outputs; no model was retrained.
 
 Inputs: the saved probabilities and raw Grad-CAM maps of the five AD5 re-runs (`round3` outputs) and the audit tables
 in `reproducibility/audit_tables`.
+* `equal_area_direction_matched_null.py`: equal-area templates against a random choice restricted to the same direction (Very Mild predictions with Severe as runner-up), and the number of distinct corrected test images.
