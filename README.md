@@ -99,6 +99,8 @@ inference:
 
 * `reproducibility/round4/` – fourth round: Phase 1 trained with cross-entropy and frozen ResNet-50 / EfficientNetV2-S backbones with the Phase-1 head on the same AD5 splits (the hybrid keeps the highest balanced accuracy in every seed); Phase 1 trained on part of the AD5 training directory and evaluated on held-out images of that directory, under synthetic intensity changes and on the test directory (the corrected Severe→Very Mild errors arise only on the test directory, where the gain recurs: +74, +89, +62, +36); one learning-rate grid for all heads and linear probes with self-attention capacity controls (cross-attention beats same-loss self-attention heads in 39 and 40 of 50 runs and late fusion in 35 of 50); late fusion with cross-entropy and self-attention heads on OASIS-1 and full-resolution MedMNIST; deep ensemble, label-shift-weighted conformal sets, participant-cluster bootstrap and age-matched evaluation on OASIS-1.
 
+* `reproducibility/round5/` – fifth round: equal-area templates (shape and location only; the layer still gains in all five AD5 seeds, +58 in total), RetinaMNIST-224 → APTOS 2019 external test set (the cross-attention head stays the best of eight heads; the enablement rule keeps SecondLook off where the errors have no consistent direction), and training-time imbalance remedies (weighted cross-entropy, balanced sampling, logit-adjusted loss) for the cross-attention head on five datasets. The manuscript is split into a main text and a Supplementary Material (`analysis/split_supp.py`).
+
 ## Citation
 
 ```bibtex
