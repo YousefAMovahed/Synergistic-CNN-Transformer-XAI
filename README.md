@@ -97,11 +97,13 @@ inference:
   * `kaggle/secondlook_round3_newdata.py` and `analysis/analysis_r3_newdata2.py` – OASIS-1 with a participant-level split (347 participants, CDR 0 / 0.5 / ≥1) and RetinaMNIST / DermaMNIST at 224×224; documented threshold search and cross-fitted enablement rule on validation data only.
   * `kaggle/secondlook_matched_heads_r3.py`, `kaggle/secondlook_heads_lr_{a,b}.py` – ten-seed matched comparison of heads, loss weights, linear probes and learning-rate-tuned heads (`outputs/`).
 
+* `reproducibility/round4/` – fourth round: Phase 1 trained with cross-entropy and frozen ResNet-50 / EfficientNetV2-S backbones with the Phase-1 head on the same AD5 splits (the hybrid keeps the highest balanced accuracy in every seed); Phase 1 trained on part of the AD5 training directory and evaluated on held-out images of that directory, under synthetic intensity changes and on the test directory (the corrected Severe→Very Mild errors arise only on the test directory, where the gain recurs: +74, +89, +62, +36); one learning-rate grid for all heads and linear probes with self-attention capacity controls (cross-attention beats same-loss self-attention heads in 39 and 40 of 50 runs and late fusion in 35 of 50); late fusion with cross-entropy and self-attention heads on OASIS-1 and full-resolution MedMNIST; deep ensemble, label-shift-weighted conformal sets, participant-cluster bootstrap and age-matched evaluation on OASIS-1.
+
 ## Citation
 
 ```bibtex
 @unpublished{AziziMovahed2026SecondLook,
-  title  = {SecondLook: Grad-CAM Consensus Review of Uncertain Predictions in a ConvNeXt--Swin Hybrid for Imbalanced Medical Image Classification},
+  title  = {SecondLook: Auditable Grad-CAM-Guided Review of Uncertain Predictions in a ConvNeXt--Swin Hybrid for Imbalanced Medical Image Classification},
   author = {Azizi Movahed, Yousef and Jalili, Amirreza and Sajedi, Hedieh},
   note   = {Manuscript, Department of Computer Science, University of Tehran},
   year   = {2026}
