@@ -1,9 +1,9 @@
-# SecondLook: Grad-CAM Consensus Review of Uncertain Predictions in a ConvNeXt–Swin Hybrid for Imbalanced Medical Image Classification
+# SecondLook: Auditable Grad-CAM-Guided Review of Uncertain Predictions in a ConvNeXt–Swin Hybrid under Class Imbalance and Dataset Shift
 
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.12%2B-ee4c2c.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Official implementation of the manuscript *"SecondLook: Grad-CAM Consensus Review of Uncertain Predictions in a ConvNeXt–Swin Hybrid for Imbalanced Medical Image Classification"* (Y. Azizi Movahed, A. Jalili, H. Sajedi; University of Tehran).
+Official implementation of the manuscript *"SecondLook: Auditable Grad-CAM-Guided Review of Uncertain Predictions in a ConvNeXt–Swin Hybrid under Class Imbalance and Dataset Shift"* (Y. Azizi Movahed, A. Jalili, H. Sajedi; University of Tehran).
 
 The code implements a **two-phase pipeline**:
 
@@ -12,6 +12,8 @@ The code implements a **two-phase pipeline**:
    * *Consensus masks:* for every correctly classified **validation** image, the Grad-CAM map (last depthwise convolution of the final ConvNeXt stage) is binarised at its `activation_percentile`-th percentile and dilated (3×3); masks are averaged per class and thresholded at `consensus_threshold`. A class mask is valid only if it has ≥ 5 contributing images and ≥ 100 pixels.
    * *Review rule:* a test prediction is reviewed if its top-1 probability `p1 < τ` **and its predicted class has a valid consensus mask**. The Grad-CAM mask of the predicted class is compared with every valid consensus mask by the **unnormalised pixel intersection** `S(x,c) = Σ M_x · C_c`. The label is switched to the second-ranked class **only if** that class also has the largest intersection (dual confirmation). Logits and attention are never modified.
    * *Thresholds:* masks are first built with the defaults (`activation_percentile` 95, `consensus_threshold` 0.90). If this gives at most one valid mask, Optuna (50 trials) tunes the three thresholds on the **validation** split and `τ = min(confidence_threshold, τ_err)`, where `τ_err` is the mean confidence of misclassified validation images. In the AD5 run the defaults gave two valid masks and `τ` was fixed at 0.6585 (`fixed_tau`).
+
+> **Release v1.2-secondlook** corresponds to the final version of the manuscript (main text and Supplementary Material). It adds the reproducibility material of all additional experiments under `reproducibility/` and keeps the review rule of v1.1.
 
 > **Correction (release v1.1-secondlook).** Release v1.0-secondlook triggered review on `p1 < τ` alone and used a 50-pixel mask threshold. The archived notebook that produced the reported results also requires the predicted class to have a valid mask and uses 100 pixels; this rule is now the default (`require_valid_pred_mask: true`, `min_mask_pixels: 100`).
 
@@ -100,6 +102,8 @@ inference:
 * `reproducibility/round4/` – fourth round: Phase 1 trained with cross-entropy and frozen ResNet-50 / EfficientNetV2-S backbones with the Phase-1 head on the same AD5 splits (the hybrid keeps the highest balanced accuracy in every seed); Phase 1 trained on part of the AD5 training directory and evaluated on held-out images of that directory, under synthetic intensity changes and on the test directory (the corrected Severe→Very Mild errors arise only on the test directory, where the gain recurs: +74, +89, +62, +36); one learning-rate grid for all heads and linear probes with self-attention capacity controls (cross-attention beats same-loss self-attention heads in 39 and 40 of 50 runs and late fusion in 35 of 50); late fusion with cross-entropy and self-attention heads on OASIS-1 and full-resolution MedMNIST; deep ensemble, label-shift-weighted conformal sets, participant-cluster bootstrap and age-matched evaluation on OASIS-1.
 
 * `reproducibility/round5/` – fifth round: equal-area templates (shape and location only; the layer still gains in all five AD5 seeds, +58 in total), RetinaMNIST-224 → APTOS 2019 external test set (the cross-attention head stays the best of eight heads; the enablement rule keeps SecondLook off where the errors have no consistent direction), and training-time imbalance remedies (weighted cross-entropy, balanced sampling, logit-adjusted loss) for the cross-attention head on five datasets. The manuscript is split into a main text and a Supplementary Material (`analysis/split_supp.py`).
+
+* `reproducibility/round7/` – comparison with the confidence- and entropy-based correction CEbUTAl (Jeffrey et al., 2025) on the five AD5 runs, per-seed results for both thresholds, and the locality analysis of SecondLook against a tuned class bias (`analysis_r9.py`, `r9_analysis.json`).
 
 ## Citation
 
